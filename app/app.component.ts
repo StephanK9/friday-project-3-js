@@ -7,8 +7,23 @@ import { Component } from '@angular/core';
     <h1>Meal Tracker App for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
     <ul>
-      <li [class]="caloriesColor(currentFood)" (click)="isDone(currentFood)" *ngFor="let currentFood of foods">{{currentFood.description}}<br>Calories:{{currentFood.calories}} <button (click)="editFood()">Edit!</button></li>
+      <li [class]="caloriesColor(currentFood)" (click)="isDone(currentFood)" *ngFor="let currentFood of foods">{{currentFood.description}}<br>Calories:{{currentFood.calories}} <button (click)="editFood(currentFood)">Edit!</button></li>
     </ul>
+    <hr>
+    <div>
+      <div *ngIf="selectedFood">
+        <h3>{{selectedFood.description}}</h3>
+        <p>Food eaten? {{selectedFood.done}}</p>
+      <h3>Edit Food Entry</h3>
+      <label>Enter Food Description:</label>
+      <input [(ngModel)]="selectedFood.description">
+        <label>Enter your food's calorie count:</label>
+        <br>
+        <input type="radio" [(ngModel)]="selectedFood.calories" [value]="500">Over 500 (High Calories)<br>
+        <input type="radio" [(ngModel)]="selectedFood.calories" [value]="400">Under 500 (Low Calories)
+        <button (click)= "finishedEditing()">Done</button>
+      </div>
+    </div>
   </div>
   `
 })
@@ -25,8 +40,14 @@ export class AppComponent {
     new Food('Soup for da soul', 200)
   ];
 
-  editFood() {
-    alert("You just requested to edit your Food!");
+  selectedFood = null;
+
+  editFood(clickedFood) {
+    this.selectedFood = clickedFood;
+  }
+
+  finishedEditing() {
+    this.selectedFood = null;
   }
 
   isDone(clickedFood: Food) {
