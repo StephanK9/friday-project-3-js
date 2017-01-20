@@ -3,6 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-  <h1>Meal Tracker</h1>
+  <div class="container">
+    <h1>Meal Tracker App</h1>
+  </div>
   `
 })
+
+export class AppComponent {
+
+}
