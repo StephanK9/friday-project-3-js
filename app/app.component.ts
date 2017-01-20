@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <h1>Meal Tracker App for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
     <ul>
-      <li>{{firstFood.description}}</li>
+      <li *ngFor="let currentFood of foods">{{currentFood.description}}</li>
     </ul>
   </div>
   `
@@ -19,8 +19,14 @@ export class AppComponent {
   month: number = this.currentTime.getMonth() + 1;
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
-  firstFood = {
-    description: "Pasta"
-  }
+  foods: Food[] = [
+    new Food('Pasta with butter and cheese'),
+    new Food('Chicken with rice'),
+    new Food('Soup for da soul')
+  ];
+}
 
+export class Food {
+  public done: boolean = false;
+  constructor(public description: string) { }
 }
