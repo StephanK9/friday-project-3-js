@@ -9,20 +9,7 @@ import { Food } from './food.model';
     <h3>{{currentFocus}}</h3>
     <food-list [childFoodList]="masterFoodList" (clickSender)="editFood($event)"></food-list>
     <hr>
-    <div>
-      <div *ngIf="selectedFood">
-        <h3>{{selectedFood.description}}</h3>
-        <p>Food eaten? {{selectedFood.done}}</p>
-      <h3>Edit Food Entry</h3>
-      <label>Enter Food Description:</label>
-      <input [(ngModel)]="selectedFood.description">
-        <label>Enter your food's calorie count:</label>
-        <br>
-        <input type="radio" [(ngModel)]="selectedFood.calories" [value]="500">Over 500 (High Calories)<br>
-        <input type="radio" [(ngModel)]="selectedFood.calories" [value]="400">Under 500 (Low Calories)
-        <button (click)= "finishedEditing()">Done</button>
-      </div>
-    </div>
+    <edit-food [childSelectedFood]="selectedFood" (doneButtonClickedSender)="finishedEditing()"></edit-food>
   </div>
   `
 })
