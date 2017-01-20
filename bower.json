@@ -1,0 +1,17 @@
+{
+  "name": "meal-tracker",
+  "description": "",
+  "main": "",
+  "authors": [
+    "StephanK9 <stephane.khoury@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
