@@ -4,18 +4,36 @@ import { Food } from './food.model';
 @Component({
   selector: 'food-list',
   template: `
-  <ul>
-    <li (click)="isDone(currentFood)" *ngFor="let currentFood of childFoodList">{{currentFood.description}}<br>Calories:{{currentFood.calories}} <button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button></li>
-  </ul>
-  `
+    <select (change)="onChange($event.target.value)">
+      <option value="allFoods">All Meals</option>
+      <option value="completedFoods">Meals you ate</option>
+      <option value="incompleteFoods" selected="selected">Meals you are planning to eat</option>
+    </select>
+
+    <ul>
+      <li (click)="isDone(currentFood)" *ngFor="let currentFood of childFoodList | completeness:filterByCompleteness">{{currentFood.description}}<br>Calories:{{currentFood.calories}}
+        <input *ngIf="currentFood.done === true" type="checkbox" checked (click)="toggleDone(currentFood, false)"/>
+        <input *ngIf="currentFood.done === false" type="checkbox" (click)="toggleDone(currentFood, true)"/>
+      <button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button></li>
+    </ul>
+    `
 })
 
 export class FoodListComponent {
   @Input() childFoodList: Food[];
   @Output() clickSender = new EventEmitter();
+  filterByCompleteness: string ="incompleteFoods";
 
   editButtonHasBeenClicked(foodToEdit: Food) {
     this.clickSender.emit(foodToEdit);
+  }
+
+  onChange(optionFromMenu) {
+    this.filterByCompleteness = optionFromMenu;
+  }
+
+  togggleDone(clickedFood: Food, setCompleteness: boolean) {
+    clickedFood.done = setCompleteness;
   }
 
 
