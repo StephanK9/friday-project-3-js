@@ -12,7 +12,7 @@ _This web application will be useful for anyone trying to keep a log of all food
 _You will need to do the following to run this web application:_
 * _Git, Node.js, Bower, TypeScript_
 * _Clone my repository from here: https://github.com/StephanK9/friday-project-3-js"_
-* _Dd into the correct directory on your own computer_
+* _Cd into the correct directory on your own computer_
 * _Run npm install_
 * _Run bower install_
 * _Run gulp build_
