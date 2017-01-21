@@ -6,25 +6,22 @@ import { Food } from './food.model';
   template: `
     <h3>New Food</h3>
       <div>
-        <label>Enter a new Food Description:</label>
-        <input #newDescription>
+        <label>Enter a new Meal name:</label>
+          <input #newName class="form-control">
+        <label>Food Calories:</label>
+          <input #newCalories class="form-control">
+        <label>Enter a Description:</label>
+          <input #newDescription class="form-control">
       </div>
-      <div>
-        <label>Food Calorie range:</label>
-        <select #newCalorie>
-          <option [value]="500">High Calories</option>
-          <option [value]="300">Low Calories</option>
-        </select>
-        <button (click)="submitForm(newDescription.value, newCalorie.value); newDescription.value='';">Add</button>
-      </div>
+        <button (click)="submitForm(newName.value, newCalories.value, newDescription.value); newName.value=''; newCalories.value='';  newDescription.value='';">Add</button>
     `
 })
 
 export class NewFoodComponent {
   @Output() newFoodSender = new EventEmitter();
 
-  submitForm(description: string, calories: number) {
-    var newFoodToAdd: Food = new Food(description, calories);
+  submitForm(name: string, calories: number, description: string) {
+    var newFoodToAdd: Food = new Food(name, calories, description);
     this.newFoodSender.emit(newFoodToAdd);
   }
 

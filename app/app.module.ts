@@ -5,7 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { FoodListComponent }  from './food-list.component';
 import { EditFoodComponent }  from './edit-food.component';
 import { NewFoodComponent }  from './new-food.component';
-import { CompletenessPipe } from './completeness.pipe';
+import { CaloriesPipe } from './calories.pipe';
 
 @NgModule({
   imports: [ BrowserModule,
@@ -14,7 +14,7 @@ import { CompletenessPipe } from './completeness.pipe';
                   FoodListComponent,
                   EditFoodComponent,
                   NewFoodComponent,
-                  CompletenessPipe],
+                  CaloriesPipe],
   bootstrap:    [ AppComponent ]
 })
 

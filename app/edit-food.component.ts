@@ -6,15 +6,15 @@ import { Food } from './food.model';
   template: `
     <div>
       <div *ngIf="childSelectedFood">
-        <h3>{{childSelectedFood.description}}</h3>
-        <p>Food eaten? {{childSelectedFood.done}}</p>
       <h3>Edit Food Entry</h3>
-      <label>Enter Food Description:</label>
-      <input [(ngModel)]="childSelectedFood.description">
+      <label>Enter Food Name:</label>
+      <input [(ngModel)]="childSelectedFood.name" class="form-control">
         <label>Enter your food's calorie count:</label>
-        <br>
-        <input type="radio" [(ngModel)]="childSelectedFood.calories" [value]="500">Over 500 (High Calories)<br>
-        <input type="radio" [(ngModel)]="childSelectedFood.calories" [value]="400">Under 500 (Low Calories)
+        <input [(ngModel)]="childSelectedFood.calories" class="form-control">
+
+        <label>Enter a description for the meal</label>
+        <input [(ngModel)]="childSelectedFood.description" class="form-control">
+          
         <button (click)= "doneButtonClicked()">Done</button>
       </div>
     </div>

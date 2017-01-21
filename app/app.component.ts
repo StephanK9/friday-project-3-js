@@ -5,8 +5,9 @@ import { Food } from './food.model';
   selector: 'app-root',
   template: `
   <div class="container">
-    <h1>Meal Tracker App for {{month}}/{{day}}/{{year}}</h1>
-    <h3>{{currentFocus}}</h3>
+    <div class="jumbotron">
+      <h1>Meal Tracker for {{month}}/{{day}}/{{year}}</h1>
+    </div>
     <food-list [childFoodList]="masterFoodList" (clickSender)="editFood($event)"></food-list>
     <hr>
     <edit-food [childSelectedFood]="selectedFood" (doneButtonClickedSender)="finishedEditing()"></edit-food>
@@ -23,10 +24,11 @@ export class AppComponent {
   year: number = this.currentTime.getFullYear();
   selectedFood = null;
 
+
   masterFoodList: Food[] = [
-    new Food('Pasta with butter and cheese', 600),
-    new Food('Chicken with rice', 430),
-    new Food('Soup for da soul', 200)
+    new Food('Pasta with butter and cheese', 600, 'so good!'),
+    new Food('Chicken with rice', 430, 'yum yum'),
+    new Food('Soup for da soul', 200, 'healthy')
   ];
 
 
@@ -38,7 +40,7 @@ export class AppComponent {
     this.selectedFood = null;
   }
 
-  addFood(newFoodFromChild: Food){
-    this.masterFoodList.push(newFoodFromChild);
+  addFood(newFood: Food){
+    this.masterFoodList.push(newFood);
   }
 }
